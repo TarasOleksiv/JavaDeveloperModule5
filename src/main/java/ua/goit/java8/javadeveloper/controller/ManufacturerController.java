@@ -101,8 +101,11 @@ public class ManufacturerController {
             String newName = manufacturerName;
             if (newName == null || newName.trim().isEmpty()) {    // посилаємо повідомлення про недобре введені дані
                 messages.put("newName", "Please enter name");
-            } else if (manufacturerService.findByName(newName) != null) {  // перевіряємо чи виробник з таким іменем існує
-                messages.put("newName", "Manufacturer " + newName + " exists already");
+            } else {  // перевіряємо чи виробник з таким іменем існує
+                Manufacturer manufacturer = manufacturerService.findByName(newName);
+                if ((manufacturer != null) && (!manufacturer.getId().equals(UUID.fromString(manufacturerId)))){
+                    messages.put("newName", "Manufacturer " + newName + " exists already");
+                }
             }
 
             if (messages.isEmpty()) {   // Якщо немає помилок, втілюєм бізнес-логіку

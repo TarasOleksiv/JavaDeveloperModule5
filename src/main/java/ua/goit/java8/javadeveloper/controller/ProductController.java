@@ -137,8 +137,11 @@ public class ProductController {
             String newName = productName;
             if (newName == null || newName.trim().isEmpty()) {    // посилаємо повідомлення про недобре введені дані
                 messages.put("newName", "Please enter name");
-            }  else if (productService.findByName(newName) != null) {  // перевіряємо чи товар з таким іменем існує
-                messages.put("newName", "Product " + newName + " exists already");
+            }  else {  // перевіряємо чи товар з таким іменем існує
+                Product product = productService.findByName(newName);
+                if ((product != null) && (!product.getId().equals(UUID.fromString(productId)))){
+                    messages.put("newName", "Product " + newName + " exists already");
+                }
             }
 
             // Перевіряєм ціну.

@@ -161,8 +161,11 @@ public class UserController {
             // Отримуємо імя та перевіряєм чи воно непорожнє.
             if (username == null || username.trim().isEmpty()) {    // посилаємо повідомлення про недобре введені дані
                 messages.put("username", "Please enter username");
-            }  else if (userService.findByUsername(username) != null) {  // перевіряємо чи користувач з таким іменем існує
-                messages.put("username", "User " + username + " exists already");
+            }  else {  // перевіряємо чи користувач з таким іменем існує
+                User user = userService.findByUsername(username);
+                if ((user != null) && (!user.getId().equals(UUID.fromString(userId)))){
+                    messages.put("username", "User " + username + " exists already");
+                }
             }
 
             // Отримуємо пароль та перевіряєм чи він непорожній.
