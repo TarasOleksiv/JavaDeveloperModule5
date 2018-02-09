@@ -71,12 +71,6 @@ public class UserController {
         return "index";
     }
 
-    @RequestMapping(value = "/admin", method = RequestMethod.GET)
-    public String admin(Model model) {
-        return "admin";
-    }
-
-
 
 
     @RequestMapping(value = "/admin/showUsers", method = {RequestMethod.GET,RequestMethod.POST})
@@ -120,6 +114,8 @@ public class UserController {
         String name = username;
         if (name == null || name.trim().isEmpty()) {    // посилаємо повідомлення про недобре введені дані
             messages.put("username", "Please enter username");
+        }  else if (userService.findByUsername(name) != null) {  // перевіряємо чи користувач з таким іменем існує
+            messages.put("username", "User " + name + " exists already");
         }
 
         // Перевіряєм пароль.
@@ -165,6 +161,8 @@ public class UserController {
             // Отримуємо імя та перевіряєм чи воно непорожнє.
             if (username == null || username.trim().isEmpty()) {    // посилаємо повідомлення про недобре введені дані
                 messages.put("username", "Please enter username");
+            }  else if (userService.findByUsername(username) != null) {  // перевіряємо чи користувач з таким іменем існує
+                messages.put("username", "User " + username + " exists already");
             }
 
             // Отримуємо пароль та перевіряєм чи він непорожній.

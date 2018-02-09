@@ -62,6 +62,8 @@ public class ProductController {
             String name = productName;
             if (name == null || name.trim().isEmpty()) {    // посилаємо повідомлення про недобре введені дані
                 messages.put("name", "Please enter name");
+            }  else if (productService.findByName(name) != null) {  // перевіряємо чи товар з таким іменем існує
+                messages.put("name", "Product " + name + " exists already");
             }
 
             // Перевіряєм ціну.
@@ -135,6 +137,8 @@ public class ProductController {
             String newName = productName;
             if (newName == null || newName.trim().isEmpty()) {    // посилаємо повідомлення про недобре введені дані
                 messages.put("newName", "Please enter name");
+            }  else if (productService.findByName(newName) != null) {  // перевіряємо чи товар з таким іменем існує
+                messages.put("newName", "Product " + newName + " exists already");
             }
 
             // Перевіряєм ціну.

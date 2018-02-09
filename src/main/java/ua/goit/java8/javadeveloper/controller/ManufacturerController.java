@@ -55,6 +55,8 @@ public class ManufacturerController {
             String name = manufacturerName;
             if (name == null || name.trim().isEmpty()) {    // посилаємо повідомлення про недобре введені дані
                 messages.put("name", "Please enter name");
+            } else if (manufacturerService.findByName(name) != null) {  // перевіряємо чи виробник з таким іменем існує
+                messages.put("name", "Manufacturer " + name + " exists already");
             }
 
             // Якщо немає помилок, втілюєм бізнес-логіку
@@ -99,6 +101,8 @@ public class ManufacturerController {
             String newName = manufacturerName;
             if (newName == null || newName.trim().isEmpty()) {    // посилаємо повідомлення про недобре введені дані
                 messages.put("newName", "Please enter name");
+            } else if (manufacturerService.findByName(newName) != null) {  // перевіряємо чи виробник з таким іменем існує
+                messages.put("newName", "Manufacturer " + newName + " exists already");
             }
 
             if (messages.isEmpty()) {   // Якщо немає помилок, втілюєм бізнес-логіку
