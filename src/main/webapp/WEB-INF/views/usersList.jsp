@@ -37,7 +37,7 @@
     </c:if>
 
 
-<p><a href="${pageContext.request.contextPath}">Back to the main page</a></p>
+<p><a href="${pageContext.request.contextPath}/">Back to the main page</a></p>
 
 <form action="<c:url value="/admin/showUsers"/>" method="POST">
     <input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
@@ -140,7 +140,7 @@
     </c:if>
 </c:if>
 
-<p><a href="${pageContext.request.contextPath}">Back to the main page</a></p>
+<p><a href="${pageContext.request.contextPath}/">Back to the main page</a></p>
 
 </div>
 

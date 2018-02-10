@@ -40,7 +40,7 @@
 
 <table>
     <tr>
-        <td class="pad"><a href="${pageContext.request.contextPath}">Main page</a></td>
+        <td class="pad"><a href="${pageContext.request.contextPath}/">Main page</a></td>
         <td class="pad"><a href="${pageContext.request.contextPath}/showManufacturers">Manufacturers</a></td>
     </tr>
 </table>
@@ -135,7 +135,7 @@
 
 <table>
     <tr>
-        <td class="pad"><a href="${pageContext.request.contextPath}">Main page</a></td>
+        <td class="pad"><a href="${pageContext.request.contextPath}/">Main page</a></td>
         <td class="pad"><a href="${pageContext.request.contextPath}/showManufacturers">Manufacturers</a></td>
     </tr>
 </table>
